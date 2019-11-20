@@ -1,4 +1,12 @@
+
+As Suzt Kassem said:
+> Look inside this hypnotic gem
+> And a kaleidoscope of sights and colors
+
 # 1η Εργασία Αρχιτεκτονικής Υπολογιστών
+
+Aut
+
 ## Ερώτημα 1: Παράμετροι του starter_se.py
 
 Στο πρώτο ερώτημα ζητείται η διερεύνηση παραμέτρων που χρησιμοποιούνται από το python script με όνομα starter_se.py. Το αρχείο βρίσκεται μέσα στον υποφάκελο configs/eample/arm, ο οποίος με την σειρά του βρίσκεται στον τοπικό φάκελο εγκατάστασης του gem5.
