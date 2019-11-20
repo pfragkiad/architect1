@@ -1,12 +1,4 @@
-
-As Suzt Kassem said:
-> Look inside this hypnotic gem
-> And a kaleidoscope of sights and colors
-
 # 1η Εργασία Αρχιτεκτονικής Υπολογιστών
-
-Aut
-
 ## Ερώτημα 1: Παράμετροι του starter_se.py
 
 Στο πρώτο ερώτημα ζητείται η διερεύνηση παραμέτρων που χρησιμοποιούνται από το python script με όνομα starter_se.py. Το αρχείο βρίσκεται μέσα στον υποφάκελο configs/eample/arm, ο οποίος με την σειρά του βρίσκεται στον τοπικό φάκελο εγκατάστασης του gem5.
@@ -41,6 +33,12 @@ Aut
 * [system.clk_domain/clock] 1000 
 * [system.cpu_cluster.cpus] MinorCPU
 
+## Ερώτημα 3: Δοκιμή με custom πρόγραμμα σε C και αναφορά στα in-order μοντέλα
 
+### α) Πρόγραμμα σε C
+Για τον σκοπό της ανάλυσης, γράφτηκε ένα πρόγραμμα το οποίο υλοποιεί την Bubble Sort  ([code](/code/bubble_sort.c)) σε έναν πίνακα που αποτελείται από τυχαίους ακέραιους αριθμούς. Για λόγους παραμετροποίησης, αν δοθεί ως παράμετρος μία τιμή π.χ. 200 τότε αυτή υποδηλώνει το μέγεθος του πίνακα προς ταξινόμηση. Αν δεν δοθεί παράμετρος στην κλήση, τότε θεωρείται ως default τιμή το 100. Συνήθη benchmarks είναι ο πολλαπλασιασμός πινάκων, η bubble sort και η quick sort (βλ. [Sajjan G. Shiva - Computer Organization, Design, and Architecture, Fifth Edition](https://books.google.gr/books?id=m5KlAgAAQBAJ&pg=PA656&lpg=PA656&dq=benchmarks+bubblesort+matrix+multiplication&source=bl&ots=KpOh2HSryS&sig=ACfU3U0Puw-jreZoyFZjayeqLBcDKBXslA&hl=en&sa=X&ved=2ahUKEwjw2vq7kPjlAhXBZ1AKHfN0C5UQ6AEwBHoECAkQAQ#v=onepage&q=benchmarks%20bubblesort%20matrix%20multiplication&f=false))
+
+
+//http://learning.gem5.org/book/part1/example_configs.html
 
 
