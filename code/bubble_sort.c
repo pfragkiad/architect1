@@ -1,5 +1,5 @@
 #include <stdio.h> //printf
-#include <stdlib.h> //rand()
+#include <stdlib.h> //atoi, rand(), malloc, free, EXIT_SUCCESS
 
 //Utility function for array printing
 void printArray(int* arr, int size) 
@@ -40,12 +40,12 @@ int main(int argc, char** argv)
      arr[i] = rand() % 100;
 
    //print unsorted array
-   printf("Unsorted array: \n"); 
+   puts("Unsorted array:"); 
    printArray(arr, n); 
 
    //sort the array and print the results
    bubbleSort(arr, n); 
-   printf("Sorted array: \n"); 
+   puts("Sorted array:"); 
    printArray(arr, n); 
 
    //release the array
