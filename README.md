@@ -54,8 +54,84 @@ arm-linux-gnueabihf-gcc --static bubble_sort.c -o bubble_sort_arm
 ./build/ARM/gem5.opt -d bubble_sort_minorcpu configs/example/se.py --cpu-type=MinorCPU --caches -c "tests/my_progs/bubble_sort_arm"
 ./build/ARM/gem5.opt -d bubble_sort_timingsimplecpu configs/example/se.py --cpu-type=TimingSimpleCPU --caches -c "tests/my_progs/bubble_sort_arm"
 ```
-Μετά την εκτέλεση δημιουργήθηκαν 2 φάκελοι με τα ονόματα bubble_sort_minorcpu και bubble_sort_timingsimplecpu για Minor CPU και 
+Μετά την εκτέλεση δημιουργήθηκαν 2 φάκελοι με τα ονόματα _bubble\_sort\_minorcpu_ και _bubble\_sort\_timingsimplecpu_ για MinorCPU και TimingSimpleCPU αντίστοιχα. Ακολουθεί το πρώτο κομμάτι του αρχείου stats.txt για τον επεξεργαστή τύπου MinorCPU: 
+```
+---------- Begin Simulation Statistics ----------
+final_tick                                  218400000                       # Number of ticks from beginning of simulation (restored from checkpoints and never reset)
+host_inst_rate                                  76867                       # Simulator instruction rate (inst/s)
+host_mem_usage                                 702976                       # Number of bytes of host memory used
+host_op_rate                                    83400                       # Simulator op (including micro ops) rate (op/s)
+host_seconds                                     4.31                       # Real time elapsed on the host
+host_tick_rate                               50719244                       # Simulator tick rate (ticks/s)
+sim_freq                                 1000000000000                       # Frequency of simulated ticks
+sim_insts                                      330975                       # Number of instructions simulated
+sim_ops                                        359118                       # Number of ops (including micro ops) simulated
+sim_seconds                                  0.000218                       # Number of seconds simulated
+sim_ticks                                   218400000                       # Number of ticks simulated
+system.cpu.branchPred.BTBCorrect                    0                       # Number of correct BTB predictions (this stat may not work properly.
+system.cpu.branchPred.BTBHitPct             59.673032                       # BTB Hit Percentage
+system.cpu.branchPred.BTBHits                   22156                       # Number of BTB hits
+system.cpu.branchPred.BTBLookups                37129                       # Number of BTB lookups
+system.cpu.branchPred.RASInCorrect                  5                       # Number of incorrect RAS predictions.
+system.cpu.branchPred.condIncorrect              2036                       # Number of conditional branches incorrect
+system.cpu.branchPred.condPredicted             31161                       # Number of conditional branches predicted
+system.cpu.branchPred.indirectHits               1223                       # Number of indirect target hits.
+system.cpu.branchPred.indirectLookups            2173                       # Number of indirect predictor lookups.
+system.cpu.branchPred.indirectMisses              950                       # Number of indirect misses.
+system.cpu.branchPred.lookups                   47041                       # Number of BP lookups
+system.cpu.branchPred.usedRAS                    5365                       # Number of times the RAS was used to get a target.
+system.cpu.branchPredindirectMispredicted           82                       # Number of mispredicted indirect branches.
+system.cpu.committedInsts                      330975                       # Number of instructions committed
+system.cpu.committedOps                        359118                       # Number of ops (including micro ops) committed
+system.cpu.cpi                               1.319737                       # CPI: cycles per instruction
+...
+...
+system.cpu.numCycles                           436800                       # number of cpu cycles simulated
 
+```
+Στη συνέχεια ακολουθε το πρώτο κομμάτι του αρχείου stats.txt για τον επεξεργαστή τύπου TimingSimpleCPU:
+```
+---------- Begin Simulation Statistics ----------
+final_tick                                  531754000                       # Number of ticks from beginning of simulation (restored from checkpoints and never reset)
+host_inst_rate                                 213628                       # Simulator instruction rate (inst/s)
+host_mem_usage                                 701440                       # Number of bytes of host memory used
+host_op_rate                                   230986                       # Simulator op (including micro ops) rate (op/s)
+host_seconds                                     1.55                       # Real time elapsed on the host
+host_tick_rate                              344033032                       # Simulator tick rate (ticks/s)
+sim_freq                                 1000000000000                       # Frequency of simulated ticks
+sim_insts                                      330132                       # Number of instructions simulated
+sim_ops                                        357007                       # Number of ops (including micro ops) simulated
+sim_seconds                                  0.000532                       # Number of seconds simulated
+sim_ticks                                   531754000                       # Number of ticks simulated
+system.cpu.Branches                             43401                       # Number of branches fetched
+system.cpu.committedInsts                      330132                       # Number of instructions committed
+system.cpu.committedOps                        357007                       # Number of ops (including micro ops) committed
+...
+...
+system.cpu.not_idle_fraction                 1.000000                       # Percentage of non-idle cycles
+system.cpu.numCycles                          1063508                       # number of cpu cycles simulated
+system.cpu.numWorkItemsCompleted                    0                       # number of work items this cpu completed
+system.cpu.numWorkItemsStarted                      0                       # number of work items this cpu started
+system.cpu.num_busy_cycles               1063507.998000                       # Number of busy cycles
+system.cpu.num_cc_register_reads              1390903                       # number of times the CC registers were read
+system.cpu.num_cc_register_writes              229631                       # number of times the CC registers were written
+system.cpu.num_conditional_control_insts        29475                       # number of instructions that are conditional controls
+system.cpu.num_fp_alu_accesses                      0                       # Number of float alu accesses
+system.cpu.num_fp_insts                             0                       # number of float instructions
+system.cpu.num_fp_register_reads                    0                       # number of times the floating registers were read
+system.cpu.num_fp_register_writes                   0                       # number of times the floating registers were written
+system.cpu.num_func_calls                       10448                       # number of times a function call or return occured
+system.cpu.num_idle_cycles                   0.002000                       # Number of idle cycles
+system.cpu.num_int_alu_accesses                322655                       # Number of integer alu accesses
+system.cpu.num_int_insts                       322655                       # number of integer instructions
+system.cpu.num_int_register_reads              554656                       # number of times the integer registers were read
+system.cpu.num_int_register_writes             246083                       # number of times the integer registers were written
+system.cpu.num_load_insts                      109039                       # Number of load instructions
+system.cpu.num_mem_refs                        153548                       # number of memory refs
+system.cpu.num_store_insts                      44509                       # Number of store instructions
+```
+β) Διαφορές των τρεξιμάτων στις 2 CPU
+Παρατηρούμε 
 //http://learning.gem5.org/book/part1/example_configs.html
 
 
