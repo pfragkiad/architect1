@@ -39,7 +39,7 @@ _Ραφαήλ Μπουλογεώργος, ΑΕΜ: 9186_
 
 ## Ερώτημα 3: Δοκιμή με custom πρόγραμμα σε C και αναφορά στα in-order μοντέλα
 Τα in-order CPU μοντέλα, όπως περιγράφονται στο site είναι τα παρακάτω:
-
+* MinorCPU : Είναι ένας in-order επεξεργαστής ο οποίος πρωτογενώς αναπτύχθηκε για την υποστήριξη της αρχιτεκτονικής ARM ISA ([https://raw.githubusercontent.com/arm-university/arm-gem5-rsk/master/gem5_rsk.pdf] (System Modeling using gem5)). Περιλαμβάνει μία σωλήνωση 4 σταδίων.
 
 ### α) Πρόγραμμα σε C
 
@@ -131,7 +131,7 @@ system.cpu.num_mem_refs                        153548                       # nu
 system.cpu.num_store_insts                      44509                       # Number of store instructions
 ```
 β) Διαφορές των τρεξιμάτων στις 2 CPU
-Παρατηρούμε 
+Παρατηρούμε ότι το τρέξιμο για το MinorCPU ολοκληρώθηκε στα 218 μs, έναντι των 532 μs του TimingSimpleCPU. Η διαφορά είναι αναμενόμενη, γιατί η MinorCPU χρησιμοποιεί pipeline 4 σταδίων
 //http://learning.gem5.org/book/part1/example_configs.html
 
 
