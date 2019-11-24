@@ -66,7 +66,9 @@ def main():
 ![MinorCPU pipeline](/img/minorcpu_pipeline.png)
 
 * SimpleCPU: περιλαμβάνει απλοποιημένες εκδοχές επεξεργαστών των οποίων η χρήση ενδείκνυται για απλές δοκιμές, όταν μας ενδιαφέρει ένα συγκεκριμένο κομμάτι της προσομοίωσης ([System Modeling using gem5](https://raw.githubusercontent.com/arm-university/arm-gem5-rsk/master/gem5_rsk.pdf))
-  * AtomicSimpleCPU:   ([gem5.org](http://gem5.org/SimpleCPU))
+  * AtomicSimpleCPU:  
+  
+  ([gem5.org](http://gem5.org/SimpleCPU))
 
 ### α) Πρόγραμμα σε C
 
