@@ -61,14 +61,16 @@ def main():
 
 ## Ερώτημα 3: Δοκιμή με custom πρόγραμμα σε C και αναφορά στα in-order μοντέλα
 Τα in-order CPU μοντέλα, όπως χρησιμοποιούνται από το gem5 είναι τα παρακάτω:
-* MinorCPU: Είναι ένας in-order επεξεργαστής ο οποίος πρωτογενώς αναπτύχθηκε για την υποστήριξη της αρχιτεκτονικής ARM ISA ([System Modeling using gem5](https://raw.githubusercontent.com/arm-university/arm-gem5-rsk/master/gem5_rsk.pdf)). Περιλαμβάνει μία σωλήνωση 4 σταδίων. Αποτελεί την βάση για τη μελέτη επεξεργαστή με χρήση cache μνημών.
+* Minor CPU: Είναι ένας in-order επεξεργαστής ο οποίος πρωτογενώς αναπτύχθηκε για την υποστήριξη της αρχιτεκτονικής ARM ISA ([System Modeling using gem5](https://raw.githubusercontent.com/arm-university/arm-gem5-rsk/master/gem5_rsk.pdf)). Περιλαμβάνει ένα pipeline 4 σταδίων. Αποτελεί την βάση για τη μελέτη επεξεργαστή με χρήση cache μνημών.
 
 ![MinorCPU pipeline](/img/minorcpu_pipeline.png)
 
-* SimpleCPU: περιλαμβάνει απλοποιημένες εκδοχές επεξεργαστών των οποίων η χρήση ενδείκνυται για απλές δοκιμές, όταν μας ενδιαφέρει ένα συγκεκριμένο κομμάτι της προσομοίωσης ([System Modeling using gem5](https://raw.githubusercontent.com/arm-university/arm-gem5-rsk/master/gem5_rsk.pdf))
-  * AtomicSimpleCPU:  
-  
-  ([gem5.org](http://gem5.org/SimpleCPU))
+* Base Simple CPU: περιλαμβάνει απλοποιημένες εκδοχές επεξεργαστών των οποίων η χρήση ενδείκνυται για απλές δοκιμές, όταν μας ενδιαφέρει ένα συγκεκριμένο κομμάτι της προσομοίωσης ([System Modeling using gem5](https://raw.githubusercontent.com/arm-university/arm-gem5-rsk/master/gem5_rsk.pdf)). Στο απλοποιημένο αυτό μοντέλο δεν υπάρχει pipeline. Ανάλογα με τον τύπο πρόσβασης στη μνήμη διακρίνουμε τις παρακάτω δύο περιπτώσεις ([gem5.org](http://gem5.org/SimpleCPU)):
+  * Atomic Simple CPU: Δεν χρησιμοποιεί χρονισμό με ουρά και έτσι χρησιμοποιείται για τις περιπτώσεις που μας ενδιαφέρει αμιγώς ο χρόνος εκτέλεσης ενός κώδικα (atomic accesses).
+  * Timing Simple CPU: Αποτελεί πιο ρεαλιστική προσέγγιση σε σχέση με την Atomic, επειδή χρησιμοποιείται χρονισμός και έτσι μοντελοποιείται η καθυστέρηση πρόσβασης στη μνήμη λόγω σχηματισμού ουράς και χρήση κοινόχρηστων πόρων.
+Μία συγκριτική απεικόνιση των Atomic και Timing Simple προσεγγίσεων εμφανίζεται στην παρακάτω εικόνα:
+
+![Atomic vs TimingSimple](/img/atomic_vs_timingsimple.png)
 
 ### α) Πρόγραμμα σε C
 
