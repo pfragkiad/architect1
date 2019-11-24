@@ -170,8 +170,7 @@ system.cpu.num_load_insts                      109039                       # Nu
 system.cpu.num_mem_refs                        153548                       # number of memory refs
 system.cpu.num_store_insts                      44509                       # Number of store instructions
 ```
-β) Διαφορές των τρεξιμάτων στις 2 CPU
-Παρατηρούμε ότι το τρέξιμο για το MinorCPU ολοκληρώθηκε στα 218 μs, έναντι των 532 μs του TimingSimpleCPU. Η διαφορά είναι αναμενόμενη, γιατί η MinorCPU χρησιμοποιεί pipeline 4 σταδίων
-//http://learning.gem5.org/book/part1/example_configs.html
+### β) Διαφορές των τρεξιμάτων στις 2 CPU
+Παρατηρούμε ότι το τρέξιμο για το MinorCPU ολοκληρώθηκε στα 218 μs, έναντι των 532 μs του TimingSimpleCPU. Η διαφορά είναι αναμενόμενη, γιατί η Minor CPU χρησιμοποιεί pipeline 4 σταδίων, ενώ η Timing Simple CPU στην πράξη λειτουργεί σειριακά χωρίς pipeline, συνεπώς η τελευταία είναι σίγουρα πιο αργή στην εκτέλεση.
 
 
