@@ -88,7 +88,11 @@ int main(int argc, char** argv)
 gcc bubble_sort.c -o bubble_sort
 arm-linux-gnueabihf-gcc --static bubble_sort.c -o bubble_sort_arm
 ```
-Για τον σκοπό του ερωτήματος (α) δημιουργήθηκε ένα bash script ([runsimulations.sh](runsimulations.sh)) στο οποίο εκτελέστηκε με δυο διαφορετικές CPU, το πρόγραμμα του bubble sort:
+Για τον σκοπό του ερωτήματος (α) δημιουργήθηκε ένα bash script ([runsimulations.sh](runsimulations.sh)) στο οποίο εκτελέστηκε με δυο διαφορετικές CPU, το πρόγραμμα του bubble sort. Η σύνταξη που δέχεται το _se.py_ είναι ελαφρώς διαφορετική από αυτή που αναφέρεται στην διατύπωση της εργασίας. Για την σωστή σύνταξη ερευνήθηκαν οι σωστές παράμετροι με την βοήθεια της παρακάτω εντολής:
+```bash
+./build/ARM/gem5.opt configs/example/se.py -h
+```
+Έτσι για να περαστούν οι σωστές παράμετροι πρέπει να περαστεί η παράμετρος --cpu-type (και όχι --cpu) καθώς και το -c πριν το όνομα του εκτελέσιμου arm προγράμματος. Οι τελικές εντολές που εκτελέστηκαν είναι οι:
 ```bash
 #!/bin/bash
 ./build/ARM/gem5.opt -d bubble_sort_minorcpu configs/example/se.py --cpu-type=MinorCPU --caches -c "tests/my_progs/bubble_sort_arm"
@@ -172,5 +176,7 @@ system.cpu.num_store_insts                      44509                       # Nu
 ```
 ### β) Διαφορές των τρεξιμάτων στις 2 CPU
 Παρατηρούμε ότι το τρέξιμο για το MinorCPU ολοκληρώθηκε στα 218 μs, έναντι των 532 μs του TimingSimpleCPU. Η διαφορά είναι αναμενόμενη, γιατί η Minor CPU χρησιμοποιεί pipeline 4 σταδίων, ενώ η Timing Simple CPU στην πράξη λειτουργεί σειριακά χωρίς pipeline, συνεπώς η τελευταία είναι σίγουρα πιο αργή στην εκτέλεση.
+### γ) Παραλλαγές παραμέτρων στις 2 CPU
+Εξετάστηκαν 
 
 
