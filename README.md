@@ -38,9 +38,16 @@ _Ραφαήλ Μπουλογεώργος, ΑΕΜ: 9186_
 * [system.cpu_cluster.cpus] MinorCPU
 
 ## Ερώτημα 3: Δοκιμή με custom πρόγραμμα σε C και αναφορά στα in-order μοντέλα
+Τα in-order CPU μοντέλα, όπως περιγράφονται στο site είναι τα παρακάτω:
+
 
 ### α) Πρόγραμμα σε C
-Για τον σκοπό της ανάλυσης, γράφτηκε ένα πρόγραμμα το οποίο υλοποιεί την Bubble Sort  ([code](/code/bubble_sort.c)) σε έναν πίνακα που αποτελείται από τυχαίους ακέραιους αριθμούς. Για λόγους παραμετροποίησης, αν δοθεί ως παράμετρος μία τιμή π.χ. 200 τότε αυτή υποδηλώνει το μέγεθος του πίνακα προς ταξινόμηση. Αν δεν δοθεί παράμετρος στην κλήση, τότε θεωρείται ως default τιμή το 100. Συνήθη benchmarks είναι ο πολλαπλασιασμός πινάκων, η bubble sort και η quick sort (βλ. [Sajjan G. Shiva - Computer Organization, Design, and Architecture, Fifth Edition](https://books.google.gr/books?id=m5KlAgAAQBAJ&pg=PA656&lpg=PA656&dq=benchmarks+bubblesort+matrix+multiplication&source=bl&ots=KpOh2HSryS&sig=ACfU3U0Puw-jreZoyFZjayeqLBcDKBXslA&hl=en&sa=X&ved=2ahUKEwjw2vq7kPjlAhXBZ1AKHfN0C5UQ6AEwBHoECAkQAQ#v=onepage&q=benchmarks%20bubblesort%20matrix%20multiplication&f=false))
+
+Για τον σκοπό της ανάλυσης, γράφτηκε ένα πρόγραμμα το οποίο υλοποιεί την Bubble Sort  ([code](/code/bubble_sort.c)) σε έναν πίνακα που αποτελείται από τυχαίους ακέραιους αριθμούς. Για λόγους παραμετροποίησης, αν δοθεί ως παράμετρος μία τιμή π.χ. 200 τότε αυτή υποδηλώνει το μέγεθος του πίνακα προς ταξινόμηση. Αν δεν δοθεί παράμετρος στην κλήση, τότε θεωρείται ως default τιμή το 100. Συνήθη benchmarks είναι ο πολλαπλασιασμός πινάκων, η bubble sort και η quick sort (βλ. [Sajjan G. Shiva - Computer Organization, Design, and Architecture, Fifth Edition](https://books.google.gr/books?id=m5KlAgAAQBAJ&pg=PA656&lpg=PA656&dq=benchmarks+bubblesort+matrix+multiplication&source=bl&ots=KpOh2HSryS&sig=ACfU3U0Puw-jreZoyFZjayeqLBcDKBXslA&hl=en&sa=X&ved=2ahUKEwjw2vq7kPjlAhXBZ1AKHfN0C5UQ6AEwBHoECAkQAQ#v=onepage&q=benchmarks%20bubblesort%20matrix%20multiplication&f=false)). Η μεταγλώττιση του προγράμματος έγινε σε με _gcc_ (για λόγους αποσφαλμάτωσης) και με τον cross compiler για ARM _arm-linux-gnueabihf-gcc_ προκειμένου να μπορεί να χρησιμοποιηθεί το εκτελέσιμο από τον προσομοιωτή του ARM:
+```bash
+gcc bubble_sort.c -o bubble_sort
+arm-linux-gnueabihf-gcc --static bubble_sort.c -o bubble_sort_arm
+```
 Για τον σκοπό του ερωτήματος (α) δημιουργήθηκε ένα bash script ([runsimulations.sh](runsimulations.sh)) στο οποίο εκτελέστηκε με δυο διαφορετικές CPU, το πρόγραμμα του bubble sort:
 ```bash
 #!/bin/bash
