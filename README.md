@@ -6,9 +6,31 @@ _Ραφαήλ Μπουλογεώργος, ΑΕΜ: 9186_
 ## Ερώτημα 1: Παράμετροι του starter_se.py
 
 Στο πρώτο ερώτημα ζητείται η διερεύνηση παραμέτρων που χρησιμοποιούνται από το python script με όνομα starter_se.py. Το αρχείο βρίσκεται μέσα στον υποφάκελο configs/eample/arm, ο οποίος με την σειρά του βρίσκεται στον τοπικό φάκελο εγκατάστασης του gem5.
-Όπως φαίνεται και από το παρακάτω screenshot, στο σημείο εισόδου του script (συνάρτηση main), προστίθενται στον parser παράμετροι που περιγράφουν το υπολογιστικό σύστημα: 
+Όπως φαίνεται και από το παρακάτω απόσπασμα του _starter_se.py_, στο σημείο εισόδου του script (συνάρτηση main), προστίθενται στον parser παράμετροι που περιγράφουν το υπολογιστικό σύστημα: 
 
-![starter_se.py](/screenshots/starter_se.png)
+```python
+def main():
+    parser = argparse.ArgumentParser(epilog=__doc__)
+
+    parser.add_argument("commands_to_run", metavar="command(s)", nargs='*',
+                        help="Command(s) to run")
+    parser.add_argument("--cpu", type=str, choices=cpu_types.keys(),
+                        default="atomic",
+                        help="CPU model to use")
+    parser.add_argument("--cpu-freq", type=str, default="4GHz")
+    parser.add_argument("--num-cores", type=int, default=1,
+                        help="Number of CPU cores")
+    parser.add_argument("--mem-type", default="DDR3_1600_8x8",
+                        choices=ObjectList.mem_list.get_names(),
+                        help = "type of memory to use")
+    parser.add_argument("--mem-channels", type=int, default=2,
+                        help = "number of memory channels")
+    parser.add_argument("--mem-ranks", type=int, default=None,
+                        help = "number of memory ranks per channel")
+    parser.add_argument("--mem-size", action="store", type=str,
+                        default="2GB",
+                        help="Specify the physical memory size")
+```
 
 Στην συγκεκριμένη περίπτωση απαντώνται τα εξής χαρακτηριστικά (ως προεπιλογές-defaults):
 * Τύπος CPU: Atomic (υπονοείται Atomic Simple CPU)
