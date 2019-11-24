@@ -63,7 +63,7 @@ def main():
 Τα in-order CPU μοντέλα, όπως χρησιμοποιούνται από το gem5 είναι τα παρακάτω:
 * MinorCPU: Είναι ένας in-order επεξεργαστής ο οποίος πρωτογενώς αναπτύχθηκε για την υποστήριξη της αρχιτεκτονικής ARM ISA ([https://raw.githubusercontent.com/arm-university/arm-gem5-rsk/master/gem5_rsk.pdf] (System Modeling using gem5)). Περιλαμβάνει μία σωλήνωση 4 σταδίων. Αποτελεί την βάση για τη μελέτη επεξεργαστή με χρήση cache μνημών.
 
-![MinorCPU pipeline](/img/minorcpu_pipeline.png")
+![MinorCPU pipeline](/img/minorcpu_pipeline.png)
 
 * SimpleCPU: περιλαμβάνει απλοποιημένες εκδοχές επεξεργαστών των οποίων η χρήση ενδείκνυται για απλές δοκιμές, όταν μας ενδιαφέρει ένα συγκεκριμένο κομμάτι της προσομοίωσης ([https://raw.githubusercontent.com/arm-university/arm-gem5-rsk/master/gem5_rsk.pdf] (System Modeling using gem5))
   * AtomicSimpleCPU:   ([gem5.org] (http://gem5.org/SimpleCPU))
