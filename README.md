@@ -98,7 +98,7 @@ arm-linux-gnueabihf-gcc --static bubble_sort.c -o bubble_sort_arm
 ./build/ARM/gem5.opt -d bubble_sort_minorcpu configs/example/se.py --cpu-type=MinorCPU --caches -c "tests/my_progs/bubble_sort_arm"
 ./build/ARM/gem5.opt -d bubble_sort_timingsimplecpu configs/example/se.py --cpu-type=TimingSimpleCPU --caches -c "tests/my_progs/bubble_sort_arm"
 ```
-Μετά την εκτέλεση δημιουργήθηκαν 2 φάκελοι με τα ονόματα _bubble\_sort\_minorcpu_ και _bubble\_sort\_timingsimplecpu_ για MinorCPU και TimingSimpleCPU αντίστοιχα. Ακολουθεί το πρώτο κομμάτι του αρχείου stats.txt για τον επεξεργαστή τύπου MinorCPU: 
+Μετά την εκτέλεση δημιουργήθηκαν 2 φάκελοι με τα ονόματα _bubble\_sort\_minorcpu_ και _bubble\_sort\_timingsimplecpu_ για Minor CPU και Timing Simple CPU αντίστοιχα. Ακολουθεί το πρώτο κομμάτι του αρχείου stats.txt για τον επεξεργαστή τύπου Minor CPU: 
 ```
 ---------- Begin Simulation Statistics ----------
 final_tick                                  218400000                       # Number of ticks from beginning of simulation (restored from checkpoints and never reset)
@@ -133,7 +133,7 @@ system.cpu.cpi                               1.319737                       # CP
 system.cpu.numCycles                           436800                       # number of cpu cycles simulated
 
 ```
-Στη συνέχεια ακολουθε το πρώτο κομμάτι του αρχείου stats.txt για τον επεξεργαστή τύπου TimingSimpleCPU:
+Στη συνέχεια ακολουθεί το πρώτο κομμάτι του αρχείου stats.txt για τον επεξεργαστή τύπου Timing Simple CPU:
 ```
 ---------- Begin Simulation Statistics ----------
 final_tick                                  531754000                       # Number of ticks from beginning of simulation (restored from checkpoints and never reset)
@@ -177,6 +177,44 @@ system.cpu.num_store_insts                      44509                       # Nu
 ### β) Διαφορές των τρεξιμάτων στις 2 CPU
 Παρατηρούμε ότι το τρέξιμο για το MinorCPU ολοκληρώθηκε στα 218 μs, έναντι των 532 μs του TimingSimpleCPU. Η διαφορά είναι αναμενόμενη, γιατί η Minor CPU χρησιμοποιεί pipeline 4 σταδίων, ενώ η Timing Simple CPU στην πράξη λειτουργεί σειριακά χωρίς pipeline, συνεπώς η τελευταία είναι σίγουρα πιο αργή στην εκτέλεση.
 ### γ) Παραλλαγές παραμέτρων στις 2 CPU
-Εξετάστηκαν 
+Εξετάστηκαν δύο διαφορετικές παραλλαγές παραμέτρων:
+**Αλλαγή τεχνολογίας μνήμης**
+Για τη διερεύνηση των διαφόρων δυνατοτήτων ως προς την επιλογή τύπων μνήμης, κλήθηκε η παρακάτω εντολή:
+```bash
+./build/ARM/gem5.opt configs/example/se.py --list-mem-types
+```
+Η έξοδος της εντολής έδωσε τους παρακάτω διαθέσιμους τύπους μνήμης:
+```
+Available AbstractMemory classes:
+	HBM_1000_4H_1x128
+	DRAMCtrl
+	DDR3_2133_8x8
+	HBM_1000_4H_1x64
+	GDDR5_4000_2x32
+	HMC_2500_1x32
+	LPDDR3_1600_1x32
+	WideIO_200_1x128
+	QoSMemSinkCtrl
+	DDR4_2400_8x8
+	DDR3_1600_8x8
+	DDR4_2400_4x16
+	DDR4_2400_16x4
+	SimpleMemory
+	LPDDR2_S4_1066_1x32
+```
+Για τις δοκιμές, επιλέχθηκαν οι τύποι _DDR3_1600_8x8_ και _DDR4_2400_8x8_. Συνολικά εκτελέστηκαν 4 σενάρια όπως φαίνεται και από τις παρακάτω εντολές:
+```bash
+#!/bin/bash
+./build/ARM/gem5.opt -d bubble_sort_minorcpu_DDR3 configs/example/se.py --cpu-type=MinorCPU --mem-type=DDR3_1600_8x8 --caches -c "tests/my_progs/bubble_sort_arm"
+./build/ARM/gem5.opt -d bubble_sort_minorcpu_DDR4 configs/example/se.py --cpu-type=MinorCPU --mem-type=DDR4_2400_8x8  --caches -c "tests/my_progs/bubble_sort_arm"
+./build/ARM/gem5.opt -d bubble_sort_timingsimplecpu_DDR3 configs/example/se.py --cpu-type=TimingSimpleCPU --mem-type=DDR3_1600_8x8 --caches -c "tests/my_progs/bubble_sort_arm"
+./build/ARM/gem5.opt -d bubble_sort_timingsimplecpu_DDR4 configs/example/se.py --cpu-type=TimingSimpleCPU --mem-type=DDR4_2400_8x8 --caches -c "tests/my_progs/bubble_sort_arm"
+```
+
+Τα αποτελέσματα ως προς τους χρόνους εκτέλεσης συνοψίζονται παρακάτω:
+
+
+
+Αλλαγή συχνότητας λειτουργίας:
 
 
