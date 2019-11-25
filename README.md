@@ -220,7 +220,7 @@ TimingSimpleCPU|DDR4_2400_8x8|531
 Παρατηρούμε ότι η αλλαγή της μνήμης από DDR3 σε DDR4 επιφέρει μία αμελητέα βελτίωση στον χρόνο εκτέλεσης και στα δύο μοντέλα, γεγονός που σημαίνει ότι η μνήμη δεν είναι ο κρίσιμος πόρος όσον αφορά το συγκεκριμένο πρόγραμμα που επιλέχθηκε προς εκτέλεση.
 
 #### Αλλαγή συχνότητας CPU
-Για την διερεύνηση της επίπτωσης αλλαγής της συχνότητας της CPU χρησιμοποιήθηκε η παράμετρος --cpu-clock. Στα συγκεκριμένα σενάρια, επιλέχθηκαν ταχύτητες 1 MHz και 2 MHz για τους ίδιους επεξεργαστές. Συνολικα εκτελέστηκαν 4 σενάρια όπως φαίνεται και παρακάτω:
+Για την διερεύνηση της επίπτωσης αλλαγής της συχνότητας της CPU χρησιμοποιήθηκε η παράμετρος --cpu-clock. Στα συγκεκριμένα σενάρια, επιλέχθηκαν ταχύτητες 1 MHz και 2 MHz για τους ίδιους επεξεργαστές. Συνολικα εκτελέστηκαν 4 σενάρια όπως φαίνεται και παρακάτω ([run_simulations_freq.sh](run_simulations_freq.sh)):
 ```bash
 #!/bin/bash
 ./build/ARM/gem5.opt -d bubble_sort_minorcpu_1MHz configs/example/se.py --cpu-type=MinorCPU --cpu-clock=1000000 --caches -c "tests/my_progs/bubble_sort_arm"
@@ -229,10 +229,10 @@ TimingSimpleCPU|DDR4_2400_8x8|531
 ./build/ARM/gem5.opt -d bubble_sort_timingsimplecpu_2MHz configs/example/se.py --cpu-type=TimingSimpleCPU --cpu-clock=2000000 --caches -c "tests/my_progs/bubble_sort_arm"
 ```
 Τα αποτελέσματα ως προς τους χρόνους εκτέλεσης συνοψίζονται παρακάτω:
-CPU Type|Memory|Simulation time [μs]
+CPU Type|CPU Frequency [MHz]|Simulation time [s]
 --------|------|-------------------
-MinorCPU|DDR3_1600_8x8|218
-MinorCPU|DDR4_2400_8x8|217
-TimingSimpleCPU|DDR3_1600_8x8|532
-TimingSimpleCPU|DDR4_2400_8x8|531
-
+MinorCPU|1|0.378079
+MinorCPU|2|0.189039
+TimingSimpleCPU|1|1.009204
+TimingSimpleCPU|2|0.504602
+Σε αντίθεση με την περίπτωση της μνήμης, παρατηρούμε ότι ο διπλασιασμός της συχνότητας της CPU, υποδιπλασιάζει τον χρόνο εκτέλεσης και στους δύο επεξεργαστές, το οποίο σημαίνει ότι ο κρίσιμος πόρος στο συγκεκριμένο πρόγραμμα είναι η συχνότητα της CPU.
