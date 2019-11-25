@@ -210,17 +210,29 @@ Available AbstractMemory classes:
 ./build/ARM/gem5.opt -d bubble_sort_timingsimplecpu_DDR3 configs/example/se.py --cpu-type=TimingSimpleCPU --mem-type=DDR3_1600_8x8 --caches -c "tests/my_progs/bubble_sort_arm"
 ./build/ARM/gem5.opt -d bubble_sort_timingsimplecpu_DDR4 configs/example/se.py --cpu-type=TimingSimpleCPU --mem-type=DDR4_2400_8x8 --caches -c "tests/my_progs/bubble_sort_arm"
 ```
-
 Τα αποτελέσματα ως προς τους χρόνους εκτέλεσης συνοψίζονται παρακάτω:
-
 CPU Type|Memory|Simulation time [μs]
 --------|------|-------------------
-MinorCPU|DDR3_1600_8x8|100
-MinorCPU|DDR4_2400_8x8|100
-TimingSimpleCPU|DDR3_1600_8x8|100
-TimingSimpleCPU|DDR4_2400_8x8|100
+MinorCPU|DDR3_1600_8x8|218
+MinorCPU|DDR4_2400_8x8|217
+TimingSimpleCPU|DDR3_1600_8x8|532
+TimingSimpleCPU|DDR4_2400_8x8|531
+Παρατηρούμε ότι η αλλαγή της μνήμης από DDR3 σε DDR4 επιφέρει μία αμελητέα βελτίωση στον χρόνο εκτέλεσης και στα δύο μοντέλα, γεγονός που σημαίνει ότι η μνήμη δεν είναι ο κρίσιμος πόρος όσον αφορά το συγκεκριμένο πρόγραμμα που επιλέχθηκε προς εκτέλεση.
 
-
-#### Αλλαγή συχνότητας λειτουργίας
-
+#### Αλλαγή συχνότητας CPU
+Για την διερεύνηση της επίπτωσης αλλαγής της συχνότητας της CPU χρησιμοποιήθηκε η παράμετρος --cpu-clock. Στα συγκεκριμένα σενάρια, επιλέχθηκαν ταχύτητες 1 MHz και 2 MHz για τους ίδιους επεξεργαστές. Συνολικα εκτελέστηκαν 4 σενάρια όπως φαίνεται και παρακάτω:
+```bash
+#!/bin/bash
+./build/ARM/gem5.opt -d bubble_sort_minorcpu_1MHz configs/example/se.py --cpu-type=MinorCPU --cpu-clock=1000000 --caches -c "tests/my_progs/bubble_sort_arm"
+./build/ARM/gem5.opt -d bubble_sort_minorcpu_2MHz configs/example/se.py --cpu-type=MinorCPU --cpu-clock=2000000  --caches -c "tests/my_progs/bubble_sort_arm"
+./build/ARM/gem5.opt -d bubble_sort_timingsimplecpu_1MHz configs/example/se.py --cpu-type=TimingSimpleCPU --cpu-clock=1000000 --caches -c "tests/my_progs/bubble_sort_arm"
+./build/ARM/gem5.opt -d bubble_sort_timingsimplecpu_2MHz configs/example/se.py --cpu-type=TimingSimpleCPU --cpu-clock=2000000 --caches -c "tests/my_progs/bubble_sort_arm"
+```
+Τα αποτελέσματα ως προς τους χρόνους εκτέλεσης συνοψίζονται παρακάτω:
+CPU Type|Memory|Simulation time [μs]
+--------|------|-------------------
+MinorCPU|DDR3_1600_8x8|218
+MinorCPU|DDR4_2400_8x8|217
+TimingSimpleCPU|DDR3_1600_8x8|532
+TimingSimpleCPU|DDR4_2400_8x8|531
 
