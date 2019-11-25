@@ -229,12 +229,14 @@ Available AbstractMemory classes:
 ./build/ARM/gem5.opt -d bubble_sort_timingsimplecpu_DDR4 configs/example/se.py --cpu-type=TimingSimpleCPU --mem-type=DDR4_2400_8x8 --caches -c "tests/my_progs/bubble_sort_arm"
 ```
 Τα αποτελέσματα ως προς τους χρόνους εκτέλεσης συνοψίζονται παρακάτω:
+
 CPU Type|Memory|Simulation time [μs]
 --------|------|-------------------
 MinorCPU|DDR3_1600_8x8|218
 MinorCPU|DDR4_2400_8x8|217
 TimingSimpleCPU|DDR3_1600_8x8|532
 TimingSimpleCPU|DDR4_2400_8x8|531
+
 Παρατηρούμε ότι η αλλαγή της μνήμης από DDR3 σε DDR4 επιφέρει μία αμελητέα βελτίωση στον χρόνο εκτέλεσης και στα δύο μοντέλα, γεγονός που σημαίνει ότι η μνήμη δεν είναι ο κρίσιμος πόρος όσον αφορά το συγκεκριμένο πρόγραμμα που επιλέχθηκε προς εκτέλεση.
 
 #### Αλλαγή συχνότητας CPU
@@ -247,15 +249,17 @@ TimingSimpleCPU|DDR4_2400_8x8|531
 ./build/ARM/gem5.opt -d bubble_sort_timingsimplecpu_2MHz configs/example/se.py --cpu-type=TimingSimpleCPU --cpu-clock=2000000 --caches -c "tests/my_progs/bubble_sort_arm"
 ```
 Τα αποτελέσματα ως προς τους χρόνους εκτέλεσης συνοψίζονται παρακάτω:
+
 CPU Type|CPU Frequency [MHz]|Simulation time [s]
 --------|------|-------------------
 MinorCPU|1|0.378079
 MinorCPU|2|0.189039
 TimingSimpleCPU|1|1.009204
 TimingSimpleCPU|2|0.504602
+
 Σε αντίθεση με την περίπτωση της μνήμης, παρατηρούμε ότι ο διπλασιασμός της συχνότητας της CPU, υποδιπλασιάζει τον χρόνο εκτέλεσης και στους δύο επεξεργαστές, το οποίο σημαίνει ότι ο κρίσιμος πόρος στο συγκεκριμένο πρόγραμμα είναι η συχνότητα της CPU.
 
-** Κριτική για την εργασία
+## Κριτική για την εργασία
 Τα θέματα με τα οποία εξοικειωθήκαμε ως συγγραφείς της εργασίας είναι:
 * Η cross μεταγλώττιση προγραμμάτων από X86 σε ARM.
 * Η γνωριμία με τους βασικούς τύπους επεξεργαστή του gem5.
