@@ -88,7 +88,7 @@ int main(int argc, char** argv)
 gcc bubble_sort.c -o bubble_sort
 arm-linux-gnueabihf-gcc --static bubble_sort.c -o bubble_sort_arm
 ```
-Για τον σκοπό του ερωτήματος (α) δημιουργήθηκε ένα bash script ([runsimulations.sh](runsimulations.sh)) στο οποίο εκτελέστηκε με δυο διαφορετικές CPU, το πρόγραμμα του bubble sort. Η σύνταξη που δέχεται το _se.py_ είναι ελαφρώς διαφορετική από αυτή που αναφέρεται στην διατύπωση της εργασίας. Για την σωστή σύνταξη ερευνήθηκαν οι σωστές παράμετροι με την βοήθεια της παρακάτω εντολής:
+Για τον σκοπό του ερωτήματος (α) δημιουργήθηκε ένα bash script ([run_simulations_first.sh](run_simulations_first.sh)) στο οποίο εκτελέστηκε με δυο διαφορετικές CPU, το πρόγραμμα του bubble sort. Η σύνταξη που δέχεται το _se.py_ είναι ελαφρώς διαφορετική από αυτή που αναφέρεται στην διατύπωση της εργασίας. Για την σωστή σύνταξη ερευνήθηκαν οι σωστές παράμετροι με την βοήθεια της παρακάτω εντολής:
 ```bash
 ./build/ARM/gem5.opt configs/example/se.py -h
 ```
@@ -202,7 +202,7 @@ Available AbstractMemory classes:
 	SimpleMemory
 	LPDDR2_S4_1066_1x32
 ```
-Για τις δοκιμές, επιλέχθηκαν οι τύποι _DDR3_1600_8x8_ και _DDR4_2400_8x8_. Συνολικά εκτελέστηκαν 4 σενάρια όπως φαίνεται και από τις παρακάτω εντολές:
+Για τις δοκιμές, επιλέχθηκαν οι τύποι _DDR3_1600_8x8_ και _DDR4_2400_8x8_. Συνολικά εκτελέστηκαν 4 σενάρια όπως φαίνεται και από τις παρακάτω εντολές ([run_simulations_mem.sh](run_simulations_mem.sh)):
 ```bash
 #!/bin/bash
 ./build/ARM/gem5.opt -d bubble_sort_minorcpu_DDR3 configs/example/se.py --cpu-type=MinorCPU --mem-type=DDR3_1600_8x8 --caches -c "tests/my_progs/bubble_sort_arm"
